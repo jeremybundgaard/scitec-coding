@@ -23,18 +23,18 @@ def lla2ecef(lat, lon, alt):
 
 
 # 	coordinate transformations on the WGS-84 spheriod: [lat, lon, alt] -> [x, y, z] in ECEF
-def ecef_velocity(ecef):
+# def ecef_velocity(ecef):
 
-	t = ecef[:,0]
-	x = ecef[:,1]
-	y = ecef[:,2]
-	z = ecef[:,3]
+# 	t = ecef[:,0]
+# 	x = ecef[:,1]
+# 	y = ecef[:,2]
+# 	z = ecef[:,3]
 
-	for t in range(len(lla)):
-		position_ecef = lla2ecef(lla[t,1],lla[t,2],lla[t,3])
-		Vx = 
-		Vy = 
-		Vz = 
+# 	for t in range(len(lla)):
+# 		position_ecef = lla2ecef(lla[t,1],lla[t,2],lla[t,3])
+# 		Vx = 
+# 		Vy = 
+# 		Vz = 
 
 
-	return [Vx, Vy, Vz]
+# 	return [Vx, Vy, Vz]
