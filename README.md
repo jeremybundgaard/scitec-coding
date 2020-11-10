@@ -1,2 +1,0 @@
-# scitec-coding
- 

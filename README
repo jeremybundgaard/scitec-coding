@@ -1,0 +1,19 @@
+
+Written by Jeremy Bundgaard 9 Nov 2020
+DESCRIPTION
+this code converts lat lon alt coordinates to ECEF (earth centered earth fixed)
+as defined on the WGS84 oblate spheroid model.
+
+REQUIRED SOFTWARE
+-Download from my github: https://github.com/jeremybundgaard/scitec-coding
+-This code as developed using python 3.6 and requires only numpy and matplotlib
+-Download  python installer https://www.python.org/downloads/
+-once python is installed use the CLI (command line interface) or terminal
+ to run `pip install matplotlib numpy`
+
+USAGE
+-via CLI change directories to the scitec-coding/lla-ecef/ folder
+-run: `python SciTec_code_problem.py`
+-Info of the scripts actions/progress are output (stdout) to the CLI.
+-Two plots are generated to graphical demonstrate the velocity interpolation
+ plots=> Vxyz_interpolation_time15323{33000,5268}.png
