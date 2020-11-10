@@ -1,13 +1,7 @@
-# import csv
-import sys
-import numpy as np
-import pandas as pd
-import csv
-
-from mpl_toolkits import mplot3d
 import numpy as np
 import matplotlib.pyplot as plt
-
+from matplotlib.pyplot import figure
+from mpl_toolkits.mplot3d import axes3d
 
 import funcs
 
@@ -30,29 +24,60 @@ for i in range(len(lla)):
 	x = position_ecef[0]
 	y = position_ecef[1]
 	z = position_ecef[2]
-	newRow = np.array([[t],[x],[y],[z]]).T
-	ecef[i] = newRow
-	print(ecef[i,:])
+	ecef[i] = np.array([[t],[x],[y],[z]]).T
+	np.set_printoptions(precision=30, suppress=True)
+	# print(ecef[i,:])
+
+print('\n')
+
+# make some plots to see these data
+fig2 = plt.figure(2)
+# fig.set_size_inches(10,10)
+ax3d = fig2.add_subplot(111, projection='3d')
+ax3d.set_xlim3d(min(ecef[1:10,1]),max(ecef[1:10,1]))
+ax3d.set_ylim3d(min(ecef[1:10,2]),max(ecef[1:10,2]))
+ax3d.set_zlim3d(min(ecef[1:10,3]),max(ecef[1:10,3]))
+ax3d.set_xlabel('x', fontsize=30)
+ax3d.set_ylabel('y', fontsize=30)
+ax3d.set_zlabel('z', fontsize=30)
+t = ecef[:,0]
+x = ecef[:,1]
+y = ecef[:,2]
+z = ecef[:,3]
+
+from scipy.interpolate import splprep, splev
+tck, u = splprep([x, y, z], s=0)
+spline = splev(u, tck)
+
+ax3d.scatter3D(spline[0],spline[1],spline[2], 'g-');
+ax3d.scatter3D(x, y, z, 'r');
+fig2.show()
+plt.show()
+
+# ax.scatter3D(x, y, z, c=t, cmap="RdYlGn_r");
+
+########## rotate the axes and update ########## 
+# for angle in range(0, 360,10):
+#     ax.view_init(10, angle)
+#     plt.draw()
+#     plotname = 'ecef_angle'+str(angle)+'.png'
+#     fig.savefig(plotname, dpi=100)
+#     print('saved: ',plotname)
 
 
-# make some plots to see what these data look like
-fig = plt.figure()
-ax = plt.axes(projection="3d")
+#####################################################################
+# Calculate ECEF velocity at the time points given in the input file
+#####################################################################
+ecef_vel = funcs.ecef_velocity_data(ecef)
 
-z_line = np.linspace(0, 15, 1000)
-x_line = np.cos(z_line)
-y_line = np.sin(z_line)
-ax.plot3D(x_line, y_line, z_line, 'gray')
+# t = ecef[:,0]
+# x = ecef[:,1]
+# y = ecef[:,2]
+# z = ecef[:,3]
+# ax.scatter3D(x, y, z);
+# fig.set_size_inches(20,20)
 
-z_points = 15 * np.random.random(100)
-x_points = np.cos(z_points) + 0.1 * np.random.randn(100)
-y_points = np.sin(z_points) + 0.1 * np.random.randn(100)
-ax.scatter3D(x_points, y_points, z_points, c=z_points, cmap='hsv');
-
-# plt.show()
-fig.savefig('plot.png')
-
-# Calculate ECEF velocity at the time points given in the input file • Interpolate ECEF velocity for any requested time
+# Interpolate ECEF velocity for any requested time
 
 
 
