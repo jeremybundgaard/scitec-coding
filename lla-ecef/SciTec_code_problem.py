@@ -65,12 +65,12 @@ funcs.interpolateVelocity(ecef_velocity, 1532333000)
 print("Interpolating ECEF velocity for the requested time: 1532335268")
 funcs.interpolateVelocity(ecef_velocity, 1532335268)
 
+print("SciTec Coding Problem Completed \n")
+
 
 #####################################################################
-# Interpolate ECEF velocity for any requested time
+# makes some plots to see these data
 #####################################################################
-
-# # makes some plots to see these data
 # fig = plt.figure(2)
 # fig.set_size_inches(10,10)
 # ax3d = fig.add_subplot(111, projection='3d')
@@ -104,9 +104,5 @@ funcs.interpolateVelocity(ecef_velocity, 1532335268)
 # 	fig.savefig(plotname, dpi=100)
 # 	print('saved: ',plotname)
 # 	fig.canvas.flush_events()
-    
-
-print("SciTec Coding Problem Completed \n")
-
 
 exit

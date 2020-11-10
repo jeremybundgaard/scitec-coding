@@ -1,4 +1,3 @@
-import numpy as np
 
 #####################################################################
 ####    coordinate transformations on the WGS-84 spheriod:
@@ -7,6 +6,8 @@ import numpy as np
 
 def lla2ecef(lat, lon, alt):
 
+	import numpy as np
+	
 	f = 1/298.257223563
 	a = 6378137
 	b = a*(1-f)
@@ -48,6 +49,7 @@ def interpolateVelocity(input_velocity, time):
 		iUpper = iCls+1
 		iLower = iCls
 
+	### gut check on correct bounding
 	# print("\n")
 	# print("upper Bound   Vt[",iUpper,"]: ",Vt[iUpper],'\n')
 	# print("time to be interpolated: ",time,'\n')
@@ -75,7 +77,6 @@ def interpolateVelocity(input_velocity, time):
 	ax.set_xticklabels([time_bounds[0],time,time_bounds[1]])
 	plt.xticks(rotation=-10)
 	plt.title('velocity interpolation at time:'+str(time))
-
 	ax.plot(time_bounds, Vx_bounds, 'ro--', linewidth=1, markersize=12)
 	ax.plot(time_bounds, Vy_bounds, 'go--', linewidth=1, markersize=12)
 	ax.plot(time_bounds, Vz_bounds, 'bo--', linewidth=1, markersize=12)
